@@ -19,6 +19,7 @@ private Long id;
 	private Double longitude;
 	private Instant moment;
 	private OrderStatus status;
+	private Double total;
 	
 	private List<ProductDTO> products = new ArrayList<>();
 
@@ -42,6 +43,7 @@ private Long id;
 		moment = entity.getMoment();
 		status = entity.getStatus();
 		products = entity.getProducts().stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
+		total = entity.getTotal();
 	}
 
 	public Long getId() {
@@ -94,6 +96,14 @@ private Long id;
 
 	public List<ProductDTO> getProducts() {
 		return products;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}	
 	
 }

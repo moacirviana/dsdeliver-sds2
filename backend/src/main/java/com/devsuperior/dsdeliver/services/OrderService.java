@@ -32,11 +32,11 @@ public class OrderService {
 		return list.stream().map(x -> new OrderDTO(x)).collect(Collectors.toList());
 	}
 	
-	public Order find(Long id){
-		return null;
-		//Optional<Order> obj = repo.getOne(id); 
+	public OrderDTO findById(Long id){
+		Order obj = repo.findOrderById(id); 
+		return new OrderDTO(obj);
 		//return obj.orElseThrow(() -> new ObjectNotFoundException( 
-  		  //    "Objeto não encontrado! Id: " + id + ", Tipo: " + Order.class.getName()));
+	    //    "Objeto não encontrado! Id: " + id + ", Tipo: " + Order.class.getName()));
 	}
 	
 	@Transactional

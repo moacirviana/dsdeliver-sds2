@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devsuperior.dsdeliver.dto.OrderDTO;
-import com.devsuperior.dsdeliver.entities.Order;
 import com.devsuperior.dsdeliver.services.OrderService;
 
 @RestController
@@ -33,9 +32,9 @@ public class OrderController {
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Order> find(@PathVariable Long id) {
-		Order order = service.find(id);
-		return ResponseEntity.ok(order);
+	public ResponseEntity<OrderDTO> find(@PathVariable Long id) {
+		OrderDTO orderDTO = service.findById(id);
+		return ResponseEntity.ok(orderDTO);
 	}
 	
 	@PostMapping

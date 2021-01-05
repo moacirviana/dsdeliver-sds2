@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="tb_order")
@@ -29,6 +30,9 @@ public class Order implements Serializable{
 	private Instant moment;
 	private OrderStatus status;
 	
+	@Transient
+	private Double total;
+	
 	@ManyToMany
 	@JoinTable(name="tb_order_product",
 			joinColumns = @JoinColumn(name="order_id"),
@@ -37,7 +41,6 @@ public class Order implements Serializable{
 	private Set<Product> products = new HashSet<>();
 	
 	public Order() {
-		
 	}
 	
 	public Order(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
@@ -48,8 +51,17 @@ public class Order implements Serializable{
 		this.longitude = longitude;
 		this.moment = moment;
 		this.status = status;
+		this.total = this.getTotal();
 	}
-
+	
+	public double getTotal() {
+		double soma = 0.0;
+		for (Product item : this.products) {
+			soma += item.getPrice();
+		}
+		return soma;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -102,6 +114,10 @@ public class Order implements Serializable{
 		return products;
 	}
 
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -127,7 +143,4 @@ public class Order implements Serializable{
 		return true;
 	}
 
-	
-	
-	
 }
