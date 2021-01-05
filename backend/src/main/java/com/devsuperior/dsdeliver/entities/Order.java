@@ -98,7 +98,7 @@ public class Order implements Serializable{
 		this.status = status;
 	}
 
-	public Set<Product> getProduts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 

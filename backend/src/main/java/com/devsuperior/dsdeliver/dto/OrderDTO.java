@@ -41,7 +41,7 @@ private Long id;
 		longitude = entity.getLongitude();
 		moment = entity.getMoment();
 		status = entity.getStatus();
-		products = entity.getProduts().stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
+		products = entity.getProducts().stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {
