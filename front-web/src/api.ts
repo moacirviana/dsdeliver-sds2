@@ -1,12 +1,10 @@
 import axios from "axios";
 import { OrderPayload } from "./Orders/types";
 
-const API_URL = "http://localhost:8080"
+//const API_URL = "http://localhost:8080"
 
-//const API_URL = "https://mviana-sds2.herokuapp.com"
-
+const API_URL = process.env.REACT_APP_URL_FRONT_END;
 const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
-
 
 export function fetchProducts(){
     return axios(`${API_URL}/products`)
