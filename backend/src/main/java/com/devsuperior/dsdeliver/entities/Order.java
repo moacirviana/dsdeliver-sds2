@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="tb_order")
@@ -29,9 +28,6 @@ public class Order implements Serializable{
 	private Double longitude;
 	private Instant moment;
 	private OrderStatus status;
-	
-	@Transient
-	private Double total;
 	
 	@ManyToMany
 	@JoinTable(name="tb_order_product",
@@ -51,7 +47,6 @@ public class Order implements Serializable{
 		this.longitude = longitude;
 		this.moment = moment;
 		this.status = status;
-		this.total = this.getTotal();
 	}
 	
 	public double getTotal() {
@@ -112,10 +107,6 @@ public class Order implements Serializable{
 
 	public Set<Product> getProducts() {
 		return products;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
 	}
 
 	@Override

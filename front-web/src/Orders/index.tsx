@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchProducts } from '../api';
+import Footer from '../Footer';
 import OrderLocation from './OrderLocation';
+import OrderSummary from './OrderSummary';
 import ProductsList from './ProductsList';
 import StepsHeader from './StepsHeader';
 import './style.css';
@@ -17,11 +19,15 @@ function Orders(){
       }, [])
 
     return (
-        <div className="orders-container">
-            <StepsHeader />
-            <ProductsList products={products}/>
-            <OrderLocation onChangeLocation={location => setOrderLocation}/>
-        </div>
+        <>
+            <div className="orders-container">
+                <StepsHeader />
+                <ProductsList products={products}/>
+                <OrderLocation onChangeLocation={location => setOrderLocation}/>
+                <OrderSummary />
+            </div>
+            <Footer />
+        </>
     )
 }
 

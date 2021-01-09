@@ -26,13 +26,14 @@ private Long id;
 	public OrderDTO() {
 	}
 			
-	public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
+	public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status, Double total) {
 		this.id = id;
 		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.moment = moment;
 		this.status = status;
+		this.total = total;
 	}
 	
 	public OrderDTO(Order entity) {
